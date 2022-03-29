@@ -1,6 +1,9 @@
 # Java loop performance
 
-This project contains a small utility to test the performance of different loops in Java. It computes the run times of different loops.
+This project contains a small utility to test the CPU performance of different loops in Java.
+Since different loop variants produce different bytecode, they don't all perform the same. The JRE version and the GC algorithm may also impact the results.
+
+The utility computes the run times of different loop variants using a configurable number of rounds and iterations per round, after a warm up.
 
 ## Building and running
 
@@ -51,9 +54,9 @@ JAVA_HOME=/path/to/your/jre && loopperformance ITERATIONS ROUNDS
 
 `ITERATIONS` is the number of iterations that each loop runs. `ROUNDS` is the number of times the whole test is run. The final time is an average of all the times for each round.
 
-## Loop styles
+## Loop variants
 
-The different loops we are testing are:
+What are then the different loop variants we are testing?
 
 ### For loop
 
