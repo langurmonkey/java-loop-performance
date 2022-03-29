@@ -1,5 +1,6 @@
 package langurmonkey;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -50,17 +51,27 @@ public class LoopPerformance {
     private List<Byte> DATA_WARM;
     private List<Byte> DATA;
 
+    private DecimalFormat df;
+
     public LoopPerformance() {
         System.setProperty("java.util.logging.SimpleFormatter.format", "[%4$-2s] %5$s %n");
         log = Logger.getLogger(getClass().getSimpleName());
         log.setLevel(Level.INFO);
         ConsoleHandler handler = new ConsoleHandler();
         handler.setFormatter(new SimpleFormatter());
+
+        this.df = new DecimalFormat("#.0#");
     }
 
     private void test() {
         DATA_WARM = Arrays.asList(createArray(SIZE_WARM));
         DATA = Arrays.asList(createArray(SIZE));
+
+
+        String sizeWarm;
+        if(SIZE_WARM > 1e6) {
+
+        }
 
         log.info(pad("Java version", 20) + ": " + System.getProperty("java.version"));
         log.info(pad("ROUNDS", 20) + ": " + formatNumber(ROUNDS));
@@ -101,11 +112,11 @@ public class LoopPerformance {
 
     private String formatNumber(int num) {
         if(num > 1e9) {
-            return (num / 1_000_000_000) + " G";
+            return df.format(num / 1_000_000_000d) + " G";
         } else if(num > 1e6) {
-            return (num / 1_000_000) + " M";
+            return df.format(num / 1_000_000d) + " M";
         } else if(num > 1e3) {
-            return (num / 1_000) + " k";
+            return df.format(num / 1_000d) + " k";
         } else {
             return Integer.toString(num);
         }

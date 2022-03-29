@@ -1,16 +1,35 @@
 # Java loop performance
 
-This project contains a small utility to test the performance of different loops in Java.
+This project contains a small utility to test the performance of different loops in Java. It computes the run times of different loops.
 
 ## Building and running
 
 You can build and run the tests with the default sizes (10 million iterations, 10 rounds, 5 million warm-up iterations) using:
 
 ``` bash
-gradlew run
+$  gradlew run
+
+> Task :run
+[INFO] Java version        : 17.0.3
+[INFO] ROUNDS              : 10
+[INFO] SIZE                : 10.0 M
+[INFO] SIZE (warm)         : 5.0 M
+[INFO]
+[INFO] Warming up...
+[INFO] Warm-up completed
+[INFO]
+[INFO] Testing...
+[INFO] LoopFor             : 7.119593 ms
+[INFO] LoopWhile           : 6.900041 ms
+[INFO] LoopForEach         : 7.52572 ms
+[INFO] LoopIterator        : 8.014891 ms
+[INFO] LoopIteratorImplicit: 7.752191 ms
+
+BUILD SUCCESSFUL in 1s
+2 actionable tasks: 1 executed, 1 up-to-date
 ```
 
-You can create a package with:
+The program accepts two parameters, size and rounds. In order to use them, you need to create a package and run the program with the provided script. Build the package with:
 
 ``` bash
 gradlew build
