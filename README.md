@@ -3,7 +3,7 @@
 This project contains a small utility to test the CPU performance of different loops in Java.
 Since different loop variants produce different bytecode, they don't all perform the same. The JRE version and the GC algorithm may also impact the results.
 
-The utility computes the run times of different loop variants using a configurable number of rounds and iterations per round, after a warm up.
+The utility computes the CPU and wall-clock times (plus standard deviations) of different loop variants using a configurable number of rounds and iterations per round, after a warm up period. The final times are averaged over all the rounds. The warm-up period defaults to 5 million iterations per loop variant.
 
 ## Building and running
 
@@ -13,23 +13,23 @@ You can build and run the tests with the default sizes (10 million iterations, 1
 $  gradlew run
 
 > Task :run
-[INFO] Java version        : 17.0.3
-[INFO] ROUNDS              : 10
-[INFO] SIZE                : 10.0 M
-[INFO] SIZE (warm)         : 5.0 M
+[INFO] Java version          17.0.3
+[INFO] ROUNDS                10
+[INFO] SIZE                  50.0 M
+[INFO] SIZE (warm)           5.0 M
 [INFO]
 [INFO] Warming up...
 [INFO] Warm-up completed
 [INFO]
-[INFO] Testing...
-[INFO] LoopFor             : 7.119593 ms
-[INFO] LoopWhile           : 6.900041 ms
-[INFO] LoopForEach         : 7.52572 ms
-[INFO] LoopIterator        : 8.014891 ms
-[INFO] LoopIteratorImplicit: 7.752191 ms
+[INFO] LOOP VARIANT          WALL CLOCK TIME             CPU TIME
+[INFO] For                   33.538476 (±3.33) ms        33.548269 (±3.33) ms
+[INFO] While                 39.069262 (±5.58) ms        39.084486 (±5.58) ms
+[INFO] ForEach               35.75049 (±5.74) ms         35.757057 (±5.74) ms
+[INFO] Iterator              36.809948 (±5.97) ms        36.799262 (±5.97) ms
+[INFO] IteratorImplicit      36.783146 (±5.98) ms        36.780534 (±5.98) ms
 
-BUILD SUCCESSFUL in 1s
-2 actionable tasks: 1 executed, 1 up-to-date
+BUILD SUCCESSFUL in 3s
+2 actionable tasks: 2 executed
 ```
 
 The program accepts two parameters, size and rounds. In order to use them, you need to create a package and run the program with the provided script. Build the package with:
