@@ -150,7 +150,7 @@ public class LoopPerformance {
                 double meanCpuMs = mean(elapsed[1]) / 1_000_000d;
                 double stdevCpu = stdev(elapsed[1], meanCpuMs);
                 
-                log.info(namePad + pad(meanClockMs + " (±" + format(stdevCpu) + ") ms", 28) + pad(meanCpuMs + " (±" + format(stdevClock) + ") ms", 28));
+                log.info(namePad + pad(meanClockMs + " (±" + format(stdevClock) + ") ms", 28) + pad(meanCpuMs + " (±" + format(stdevCpu) + ") ms", 28));
             }
         }
 
